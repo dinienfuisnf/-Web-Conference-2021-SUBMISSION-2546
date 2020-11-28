@@ -2,7 +2,7 @@
 
 This is a code description about *Reinforced Contact Tracing and*
 
-*Intervening.* Usage and more information can be found below.
+*Epidemic Intervention.* Usage and more information can be found below.
 
 ## Usage
 
