@@ -4,6 +4,7 @@ import os, time
 from tensorflow.keras.optimizers import Adam
 from env_new import City_env
 import tensorflow as tf
+import argparse 
 from copy import deepcopy
 from get_args import *
 import numpy as np
@@ -231,7 +232,6 @@ def get_build_func():
 
     return build
 if __name__ == '__main__':
-    train=False
     def get_reward_func(args):
         def reward_func(i,q,hos,conf1,quar1):
             def r1(i1, q1, hos,conf,quar):
@@ -243,6 +243,8 @@ if __name__ == '__main__':
             return re, end
 
         return reward_func
+  
+    train=args.train
     reward_func = get_reward_func(args)
     envs = City_env(reward_func=reward_func, period=args.period, num_pop=args.num_pop, thread_num=args.thread_num,
                    fixed_no_policy_days=args.fixed_no_policy_days, name=localtime)
