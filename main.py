@@ -18,7 +18,7 @@ num_his = 2
 num_dim = 32
 dim_state=9
 N_CYCLES = 10000
-LEARNING_RATE =1e-3
+LEARNING_RATE =1e-4
 BATCH_SIZE = 32
 MINIBATCH = 16
 GAMMA = 0.99
@@ -201,7 +201,7 @@ def get_build_func():
             action=Dense(4)(feature)
             action = Activation('softmax')(action)
             actor = Model([input_feature, advantage,input_visit,old_prediction], action)
-            actor.compile(optimizer=Adam(lr=1e-3),
+            actor.compile(optimizer=Adam(lr=1e-4),
                           loss=proximal_policy_optimization_loss(
                               advantage=advantage, old_prediction=old_prediction,
                           ), metrics=['mae'], experimental_run_tf_function=False)
@@ -222,7 +222,7 @@ def get_build_func():
             reward = Dense(num_dim, activation='relu')(reward)
             reward = Dense(1)(reward)
             critic = Model([input_feature,input_visit], reward)
-            critic.compile(optimizer=Adam(lr=1e-3,clipnorm=1.), loss='mean_squared_error', metrics=['mae'],
+            critic.compile(optimizer=Adam(lr=1e-4,clipnorm=1.), loss='mean_squared_error', metrics=['mae'],
                            experimental_run_tf_function=False)
             critic.summary()
             return critic
@@ -240,9 +240,6 @@ if __name__ == '__main__':
                 return r,Q
             end = False
             re,Q=r1(i,q,hos,conf1,quar1)
-            if re>15 or Q>250:
-                re=re-3
-                end=True
             return re, end
 
         return reward_func
