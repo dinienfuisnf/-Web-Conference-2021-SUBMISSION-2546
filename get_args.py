@@ -12,6 +12,7 @@ def str2bool(v):
 parser = argparse.ArgumentParser()
 parser.add_argument("--thread_num", type=int, help='thread_num',default=12)
 parser.add_argument("--num_pop", type=int, help='num_pop',default=10000)
+parser.add_argument("--train", type=bool, help='train_test',default=True)
 parser.add_argument("--q_threshold", type=int, help='q_threshold',default=10000)
 parser.add_argument("--i_threshold", type=int, help='i_threshold',default=500)
 parser.add_argument("--risk_threshold", type=float, help='risk_threshold',default=0.5)
