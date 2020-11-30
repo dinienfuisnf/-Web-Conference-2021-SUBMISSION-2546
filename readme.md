@@ -29,14 +29,16 @@ This is a code description about *Reinforced Contact Tracing and*
   Evaluation metrics.
 ## Processing
 
-### Training IDRLECA:
-`python main.py --epochs 20000 `
+### Training IDRLECA: train.sh
+`python main.py --train=True --save_name='test' --scenario='scenario1' --epochs=2
+0000 --save_path='./save/' `
 
 ### Testing IDRLECA:
-` python main.py --Train=False `
+`python main.py --train=False ----save_name='test' --scenario='scenario1' --load_
+path='./save/localtime_/' `
 
 ### Evaluating IDRLECA on Q, I  and Score:
-`file_name="results/cnt_test.txt" --python summary.py`
+`python summary.py --eva_text=“cnt_test.txt"`
 
 ## Configuration
   Python3.6
