@@ -98,7 +98,7 @@ def get_exp_score(I, Q, I_threshold, Q_threshold, Q_weight):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument("--eva_txt", type=string, help='evaluation text',default=“cnt_scenario1.txt")
+    parser.add_argument("--eva_txt", type=string, help='evaluation text',default=“cnt_test.txt")
     args = parser.parse_args()
     path=args.eva_txt                   
     df = process_file(path)
