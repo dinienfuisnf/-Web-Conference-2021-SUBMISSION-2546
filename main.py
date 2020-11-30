@@ -112,13 +112,13 @@ class DiscretePPO:
         critic_filepath = filename + '_critic' + extension
         self.pi.save_weights(actor_filepath, overwrite=overwrite)
         self.V.save_weights(critic_filepath, overwrite=overwrite)
-def train_PPO(agent, envs,rounds):
+def train_PPO(agent, envs,rounds,path_):
     step=0
     step1=0
     s,visit = deepcopy(envs.reset())
     SARTS_samples = []
     done = False
-    path = './save/' + localtime
+    path = path_+ localtime
     os.makedirs(path)
     print('Save at', path)
     save_path = path + '/' + 'agent_weights.ckpt'
@@ -142,10 +142,9 @@ def train_PPO(agent, envs,rounds):
             agent.train(SARTS_batch)
             step=0
             SARTS_samples=[]
-def test_PPO(agent, envs):
-    localtime_='***'
+def test_PPO(agent, envs,path_):
     step1 = 0
-    load_path='./save/'+localtime_+'/' + 'agent_weights.ckpt'
+    load_path=path_ + 'agent_weights.ckpt'
     action = np.zeros((1, num_pop))
     risk_threshold=0.01
     def smart_policy(state, action=action):
@@ -245,13 +244,14 @@ if __name__ == '__main__':
         return reward_func
   
     train=args.train
+    
     reward_func = get_reward_func(args)
     envs = City_env(reward_func=reward_func, period=args.period, num_pop=args.num_pop, thread_num=args.thread_num,
-                   fixed_no_policy_days=args.fixed_no_policy_days, name=localtime)
+                   fixed_no_policy_days=args.fixed_no_policy_days, name=args.save_name,Scenario=args.scenario)
     build_function = get_build_func()
     build_actor, build_critic = build_function()
     agent=DiscretePPO(build_critic,build_actor)
     if train:
-        train_PPO(agent, envs,20000)
+        train_PPO(agent, envs,args.epochs,args.save_path)
     else:
-        test_PPO(agent,envs)
+        test_PPO(agent,envs,args.load_path)
