@@ -33,11 +33,11 @@ This is a code description about *Reinforced Contact Tracing and*
 `python main.py --train=True --save_name='test' --scenario='scenario1' --epochs=2
 0000 --save_path='./save/' `
 
-### Testing IDRLECA:
+### Testing IDRLECA: test.sh
 `python main.py --train=False ----save_name='test' --scenario='scenario1' --load_
 path='./save/localtime_/' `
 
-### Evaluating IDRLECA on Q, I  and Score:
+### Evaluating IDRLECA on Q, I  and Score: evaluation.sh
 `python summary.py --eva_text=“cnt_test.txt"`
 
 ## Configuration
