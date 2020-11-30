@@ -7,11 +7,11 @@ pop_num=10000
 
 class City_env(Env):
     def __init__(self, reward_func, num_pop=10000, thread_num=8, period=840, fixed_no_policy_days=1, contact_his=3,
-                 intervene_his=14, name='test'):
+                 intervene_his=14, name='test',Scenario='scenario1'):
 
         self.K = 1
         self.population = num_pop
-        self.engine = simulator.Engine(thread_num=thread_num, write_mode="write", specified_run_name="test",scenario='scenario1')
+        self.engine = simulator.Engine(thread_num=thread_num, write_mode="write", specified_run_name=name,scenario=Scenario)
 
 
         print('Build engine successed')
