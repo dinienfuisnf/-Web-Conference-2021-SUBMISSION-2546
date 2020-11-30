@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 
-
+import argparse
 import pandas as pd
 import os
 import numpy as np
@@ -97,7 +97,11 @@ def get_exp_score(I, Q, I_threshold, Q_threshold, Q_weight):
 
 
 if __name__ == '__main__':
-    df = process_file("cnt_test.txt")
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--eva_txt", type=string, help='evaluation text',default=“cnt_scenario1.txt")
+    args = parser.parse_args()
+    path=args.eva_txt                   
+    df = process_file(path)
     I, Q = get_I_Q(df, time)
     print(I,Q)
     least_Q_score = get_least_Q_score(I, Q, I_threshold)
