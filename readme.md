@@ -30,10 +30,10 @@ This is a code description about *Reinforced Contact Tracing and*
 ## Processing
 
 ### Training IDRLECA:
-`Train=True --python main.py --epochs 20000 --save_path save/localtime/ `
+`python main.py --epochs 20000 `
 
 ### Testing IDRLECA:
-`Train=False --load_path /save/localtime/ --python main.py --save_path results/  `
+` python main.py --Train=False `
 
 ### Evaluating IDRLECA on Q, I  and Score:
 `file_name="results/cnt_test.txt" --python summary.py`
